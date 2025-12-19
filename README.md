@@ -4,7 +4,7 @@ A MERN stack application for patients and healthcare providers to manage wellnes
 
 ## Tech Stack
 
-- **Frontend:** React.js/Next.js, Axios, CSS Modules
+- **Frontend:** React.js/Next.js, Axios, Tailwind CSS
 - **Backend:** Node.js, Express.js, JWT authentication, bcrypt
 - **Database:** MongoDB with Mongoose ODM
 - **Deployment:** AWS/GCP/Vercel, Docker, GitHub Actions
