@@ -8,7 +8,8 @@ function PatientList() {
   const [patientGoals, setPatientGoals] = useState([]);
   const [showGoalForm, setShowGoalForm] = useState(false);
   const [newGoal, setNewGoal] = useState({
-    type: 'Exercise',
+    // Backend expects canonical types: steps, water, sleep, checkup
+    type: 'steps',
     title: '',
     targetValue: '',
     unit: 'minutes'
@@ -71,7 +72,8 @@ function PatientList() {
       setSuccess('Goal set successfully!');
       setShowGoalForm(false);
       setNewGoal({
-        type: 'Exercise',
+        // Reset to a valid default backend type
+        type: 'steps',
         title: '',
         targetValue: '',
         unit: 'minutes'
@@ -168,12 +170,10 @@ function PatientList() {
                           onChange={handleGoalChange}
                           required
                         >
-                          <option value="Exercise">Exercise</option>
-                          <option value="Nutrition">Nutrition</option>
-                          <option value="Sleep">Sleep</option>
-                          <option value="Hydration">Hydration</option>
-                          <option value="Medication">Medication</option>
-                          <option value="Other">Other</option>
+                          <option value="steps">Exercise / Steps</option>
+                          <option value="water">Hydration / Water</option>
+                          <option value="sleep">Sleep</option>
+                          <option value="checkup">Checkup / Other</option>
                         </select>
                       </div>
 
@@ -247,7 +247,7 @@ function PatientList() {
                           </div>
                           <div className="goal-body">
                             <p><strong>Type:</strong> {goal.type}</p>
-                            <p><strong>Target:</strong> {goal.targetValue} {goal.unit}</p>
+                            <p><strong>Target:</strong> {goal.target} {goal.unit}</p>
                             <p className="goal-date">
                               Set on {new Date(goal.createdAt).toLocaleDateString()}
                             </p>

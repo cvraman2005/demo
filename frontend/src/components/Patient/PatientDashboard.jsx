@@ -61,7 +61,7 @@ function PatientDashboard() {
       'steps': Footprints,
       'water': Droplets,
       'sleep': Moon,
-      'exercise': Activity
+      'checkup': Activity
     };
     return icons[type] || Target;
   };
