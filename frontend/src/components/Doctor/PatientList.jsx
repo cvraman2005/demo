@@ -64,7 +64,8 @@ function PatientList() {
     try {
       await providerService.setPatientGoal(selectedPatient._id, {
         ...newGoal,
-        targetValue: parseFloat(newGoal.targetValue)
+        // Backend expects `target`, not `targetValue`
+        target: parseFloat(newGoal.targetValue)
       });
 
       setSuccess('Goal set successfully!');

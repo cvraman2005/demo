@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      # Add your Mongo/other env vars here, e.g.
+      # - MONGODB_URI=mongodb://mongo:27017/healthcare
+    depends_on: []
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    environment:
+      # Point React app at backend API inside Docker network
+      - REACT_APP_API_URL=http://backend:5000/api
+    depends_on:
+      - backend
