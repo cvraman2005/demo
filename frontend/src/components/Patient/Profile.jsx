@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { patientService } from '../../services/api';
+import { useAuth } from '../../context/AuthContext';
 import './Patient.css';
 
 function Profile() {
+  const { updateUser } = useAuth();
   const [profile, setProfile] = useState({
     name: '',
     email: '',
@@ -49,11 +51,15 @@ function Profile() {
     setSaving(true);
 
     try {
-      await patientService.updateProfile({
+      const response = await patientService.updateProfile({
         name: profile.name,
         allergies: profile.allergies,
         medications: profile.medications
       });
+
+      if (response?.data?.name) {
+        updateUser({ name: response.data.name });
+      }
       
       setSuccess('Profile updated successfully!');
       setEditing(false);
